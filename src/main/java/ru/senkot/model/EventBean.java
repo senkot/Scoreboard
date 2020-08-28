@@ -1,3 +1,5 @@
+package ru.senkot.model;
+
 import javax.ejb.Stateless;
 import javax.inject.Named;
 

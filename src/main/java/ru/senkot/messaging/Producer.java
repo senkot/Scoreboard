@@ -1,3 +1,5 @@
+package ru.senkot.messaging;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.Connection;

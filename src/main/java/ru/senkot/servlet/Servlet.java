@@ -1,3 +1,8 @@
+package ru.senkot.servlet;
+
+import ru.senkot.messaging.Producer;
+import ru.senkot.model.EventBean;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +26,7 @@ public class Servlet extends HttpServlet {
         eventBean.setCount(8);
         eventBean.setSerialNumber("wvwvwv888Algo");
 
-        resp.getWriter().println("new EventBean was initialized");
+        resp.getWriter().println("EventBean was initialized");
         producer.produceMessage();
 
         resp.getWriter().println("method produceMessage worked");
