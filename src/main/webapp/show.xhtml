@@ -1,14 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world! !test!"/>
-    <h:outputLabel value="#{eventBean.string}"/>
-    <h:outputLabel value="#{eventBean.count}"/>
-    <h:outputLabel value="#{eventBean.serialNumber}"/>
-</f:view>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Event list for Today</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+</h:head>
+
+<h:body styleClass="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header>
+            <div style="background-color: #e6e6fe" id="my-header"
+                 class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3  border-bottom shadow-sm">
+                <h5 class="my-0 mr-md-auto font-weight-normal">Event List on Today</h5>
+            </div>
+        </header>
+
+        <div class="table-responsive container">
+
+            <table class="table table-bordered table-hover" id="user_list">
+                <tr class="table-active">
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient</th>
+                    <th>Remedy</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                </tr>
+
+                <ui:repeat var="event" value="#{eventList.events}">
+                    <tr>
+                        <td><h:outputText value="#{event.date}"/></td>
+                        <td><h:outputText value="#{event.time}"/></td>
+                        <td><h:outputText value="#{event.patient}"/></td>
+                        <td><h:outputText value="#{event.remedy}"/></td>
+                        <td><h:outputText value="#{event.type}"/></td>
+                        <td style="text-align: center"><h:outputText value="#{event.quantity}"/></td>
+                        <td><h:outputText value="#{event.status}"/></td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </div>
+    </div>
+
+</h:body>
+
 </html>
