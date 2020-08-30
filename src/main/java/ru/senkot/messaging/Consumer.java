@@ -37,12 +37,9 @@ public class Consumer implements MessageListener {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-
         eventService.setJsonEventsForJSF();
         System.out.println("Events injected into EventService from JSON");
 
-
         pushContext.send("channel");
-
     }
 }
