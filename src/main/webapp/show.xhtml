@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
@@ -31,26 +31,29 @@
                     <th>Status</th>
                 </tr>
 
-                <ui:repeat id="events" var="event" value="#{events}">
-                    <tr>
-                        <td><h:outputText value="#{event.date}"/></td>
-                        <td><h:outputText value="#{event.time}"/></td>
-                        <td><h:outputText value="#{event.patient}"/></td>
-                        <td><h:outputText value="#{event.remedy}"/></td>
-                        <td><h:outputText value="#{event.type}"/></td>
-                        <td style="text-align: center"><h:outputText value="#{event.quantity}"/></td>
-                        <td><h:outputText value="#{event.status}"/></td>
-                    </tr>
-                </ui:repeat>
+                <h:panelGroup id="events">
+                    <ui:repeat var="event" value="#{events}">
+                        <tr>
+                            <td><h:outputText value="#{event.date}"/></td>
+                            <td><h:outputText value="#{event.time}"/></td>
+                            <td><h:outputText value="#{event.patient}"/></td>
+                            <td><h:outputText value="#{event.remedy}"/></td>
+                            <td><h:outputText value="#{event.type}"/></td>
+                            <td style="text-align: center"><h:outputText value="#{event.quantity}"/></td>
+                            <td><h:outputText value="#{event.status}"/></td>
+                        </tr>
+                    </ui:repeat>
+                </h:panelGroup>
             </table>
         </div>
     </div>
 
+
     <h:form>
-        <f:websocket channel="websocket">
-            <f:ajax event="ping" render=":events" />
-        </f:websocket>
+        <h:commandScript name="updateEvents" render="user_list"/>
+        <f:websocket channel="channel" onmessage="updateEvents"/>
     </h:form>
+
 
 </h:body>
 

@@ -25,7 +25,7 @@ public class Consumer implements MessageListener {
     EventService eventService;
 
     @Inject
-    @Push(channel = "websocket")
+    @Push(channel = "channel")
     private PushContext pushContext;
 
 
@@ -42,7 +42,7 @@ public class Consumer implements MessageListener {
         System.out.println("Events injected into EventService from JSON");
 
 
-        pushContext.send("ping");
+        pushContext.send("channel");
 
     }
 }
