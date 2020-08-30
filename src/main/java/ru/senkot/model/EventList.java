@@ -7,8 +7,7 @@ import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
-@Named
+
 public class EventList {
 
     private List<Event> events;
