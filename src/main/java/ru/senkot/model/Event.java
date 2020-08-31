@@ -1,6 +1,8 @@
 package ru.senkot.model;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
 
     private String date;
     private String time;

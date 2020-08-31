@@ -21,12 +21,10 @@ import javax.websocket.server.ServerEndpoint;
         })
 public class Consumer implements MessageListener {
 
+
+
     @EJB
     EventService eventService;
-
-    @Inject
-    @Push(channel = "websocket")
-    private PushContext pushContext;
 
 
     public void onMessage(Message message) {
@@ -42,7 +40,7 @@ public class Consumer implements MessageListener {
         System.out.println("Events injected into EventService from JSON");
 
 
-        pushContext.send("ping");
+
 
     }
 }

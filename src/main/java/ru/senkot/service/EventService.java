@@ -4,6 +4,7 @@ import ru.senkot.model.Event;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.push.Push;
 import javax.faces.push.PushContext;
@@ -20,8 +21,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ApplicationScoped
 @Singleton
 public class EventService {
+
+    @Inject
+    @Push
+    private PushContext push;
 
     private List<Event> events;
 
@@ -57,6 +63,7 @@ public class EventService {
     @PostConstruct
     public void setJsonEventsForJSF() {
         this.events = eventsFromJson();
+        push.send("push");
     }
 
 }
