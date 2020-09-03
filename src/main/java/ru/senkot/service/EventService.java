@@ -17,7 +17,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,20 +45,7 @@ public class EventService {
         WebTarget target = client.target("http://localhost:9090/test/" + new Date(Calendar.getInstance().getTime().getTime()));
 
         Response response = target.request().get();
-
-        JsonArray jsonArray = response.readEntity(JsonArray.class);
-
-        List<Event> events = jsonArray.stream().map(eventJson -> {
-            Event event = new Event(
-                    ((JsonObject) eventJson).getString("date"),
-                    ((JsonObject) eventJson).getString("time"),
-                    ((JsonObject) eventJson).getString("patient"),
-                    ((JsonObject) eventJson).getString("remedy"),
-                    ((JsonObject) eventJson).getString("type"),
-                    ((JsonObject) eventJson).getInt("quantity"),
-                    ((JsonObject) eventJson).getString("status"));
-            return event;
-        }).collect(Collectors.toList());
+        List<Event> events = Arrays.asList(response.readEntity(Event[].class));
 
         return events;
     }
